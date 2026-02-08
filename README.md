@@ -1,7 +1,7 @@
 # CS712AndroidApp
 
-## Test Environment
+### Android Emulator Test ENV
 
-**Emulator:** Pixel 9a 
-**Android Version:** Android 16.0 ("Baklava")  
-**API Level:** 36
+- **Emulator:** Pixel 9a
+- **Android Version:** Android 16.0 ("Baklava")
+- **API Level:** 36
