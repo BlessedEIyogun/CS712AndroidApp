@@ -153,6 +153,15 @@ fun LandingPage(
             Text("Send Broadcast")
         }
 
+        Button(onClick = {
+            appContext.startActivity(
+                Intent(appContext,
+                    ThirdActivity::class.java))
+        })
+        {
+            Text("View Image Activity")
+        }
+
     }
 
 }
