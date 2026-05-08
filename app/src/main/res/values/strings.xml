@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CSCI712-AA</string>
+    <string name="permission_description">access permissions required for the List of Mobile Software Engineering Challenges</string>
 </resources>

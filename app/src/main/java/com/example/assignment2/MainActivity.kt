@@ -22,16 +22,24 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.assignment2.ui.theme.Assignment2Theme
 import android.content.IntentFilter
+import android.widget.Toast
 
 
-
-class MainActivity : ComponentActivity()
-{
+class MainActivity : ComponentActivity() {
     private val myReceiver = MyBroadcastReceiver()
     private var receiverRegistered = false
-
     private val MY_BASIC_BROADCAST_ACTION = "com.example.assignment2.MY_BASIC_BROADCAST_ACTION"
 
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            Toast.makeText(this, "Permission for Second Activity requested successfully", Toast.LENGTH_SHORT).show()
+
+        } else {
+            //
+        }
+    }
     override fun onStart() {
         super.onStart()
 
@@ -56,6 +64,11 @@ class MainActivity : ComponentActivity()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        if (checkSelfPermission("com.example.assignment2.MSE712")
+            != PackageManager.PERMISSION_GRANTED) {
+            requestPermissionLauncher.launch("com.example.assignment2.MSE712")
+        }
         setContent {
             Assignment2Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -109,9 +122,17 @@ fun LandingPage(
         }
 
         Button(onClick = {
-            appContext.startActivity(
-                Intent(appContext,
-                    SecondActivity::class.java))
+            if (ContextCompat.checkSelfPermission(appContext, "com.example.assignment2.MSE712")
+                == PackageManager.PERMISSION_GRANTED
+            ) {
+                appContext.startActivity(Intent(appContext, SecondActivity::class.java))
+            }
+
+            else {
+
+                Toast.makeText(appContext, "Permission denied for Second Activity Explicitly", Toast.LENGTH_SHORT).show()
+
+            }
         })
 
         {

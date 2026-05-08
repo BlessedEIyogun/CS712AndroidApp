@@ -7,6 +7,14 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.assignment2.MSE712" />
+
+    <permission
+        android:name="com.example.assignment2.MSE712"
+        android:label="MSE712 SAP"
+        android:description="@string/permission_description"
+        android:protectionLevel="dangerous" />
+        />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -36,11 +44,14 @@
 
         <activity
             android:name=".SecondActivity"
-            android:exported="true">
+            android:exported="true"
+            android:permission="com.example.assignment2.MSE712"
+            >
             <intent-filter>
                 <action android:name="com.example.assignment2.action.START_SECOND_ACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
         </activity>
 
         <activity
